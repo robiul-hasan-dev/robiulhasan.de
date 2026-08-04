@@ -83,7 +83,7 @@ export default function TitanSearchDemo() {
           {results.map((r, i) => (
             <article key={i} className="rounded-lg border border-[var(--border)] bg-[var(--bg-elevated)] p-4">
               <h2 className="text-base font-medium">
-                <a href={r.url} className="no-underline hover:text-[var(--accent)]" rel="noopener noreferrer" target="_blank">
+                <a href={r.url} className="no-underline hover:text-[var(--accent-strong)]" rel="noopener noreferrer" target="_blank">
                   {r.title}
                 </a>
               </h2>

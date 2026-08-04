@@ -27,7 +27,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
   return (
     <div className="mx-auto max-w-3xl px-6 py-10">
       <p className="text-sm text-[var(--text-tertiary)]">
-        <Link href="/blog/" className="no-underline hover:text-[var(--accent)]">
+        <Link href="/blog/" className="no-underline hover:text-[var(--accent-strong)]">
           ← Alle Artikel
         </Link>
       </p>

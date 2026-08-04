@@ -22,7 +22,7 @@ export default function BlogIndexPage() {
               })}
             </time>
             <h2 className="mt-1 text-xl font-medium">
-              <Link href={`/blog/${post.slug}/`} className="no-underline hover:text-[var(--accent)]">
+              <Link href={`/blog/${post.slug}/`} className="no-underline hover:text-[var(--accent-strong)]">
                 {post.title}
               </Link>
             </h2>

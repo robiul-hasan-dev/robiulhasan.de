@@ -28,7 +28,7 @@
   --text-3xl: 2.375rem;  /* 38px */
   --text-4xl: 3rem;      /* 48px */
 
-  --font-body: 'Inter var', system-ui, -apple-system, sans-serif;
+  --font-body: 'Space Grotesk', 'DM Sans', system-ui, sans-serif;
   --font-mono: 'JetBrains Mono var', ui-monospace, 'SF Mono', monospace;
 
   --leading-body: 1.5;
@@ -48,28 +48,29 @@
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* ============ DARK THEME (default) ============ */
+/* ============ DARK THEME (default) — "AI Purple" ============ */
 :root,
 :root[data-theme="dark"] {
-  --bg: #0A1628;
-  --bg-elevated: #101F38;
-  --bg-inset: #0C1424;
+  --bg: #0A0A0F;
+  --bg-elevated: #12121A;
+  --bg-inset: #1E1E2A;
 
-  --text-primary: #E8EDF5;
-  --text-secondary: #A9B6C9;
-  --text-tertiary: #7C8BA3;
+  --text-primary: #EDEDF5;
+  --text-secondary: #B8B8CC;
+  --text-tertiary: #8E8EA8;
 
-  --accent: #FF5A00;        /* 3.9:1 — large/UI only */
-  --accent-strong: #FF8C4D; /* 6.2:1 — body links */
-  --on-accent: #0A1628;     /* navy on orange = 5.80:1 — button text (dark theme) */
+  --accent: #7C3AED;        /* violet primary — CTA, large/UI */
+  --accent-strong: #A78BFA; /* light violet — hovers, body links */
+  --accent-cyan: #0891B2;   /* AI/tech status accent */
+  --on-accent: #FFFFFF;     /* white on violet — button text (dark theme) */
 
-  --border: #22334F;
+  --border: #26263A;
 
   --success: #3FB97F;
   --warning: #E8B93A;
   --danger: #FF6B6B;
 
-  /* --- German flag flavor (subtle accents, identity stays navy+orange) --- */
+  /* --- German flag flavor (subtle accents, identity stays violet+cyan) --- */
   --flag-gold: #FFCC00;
   --flag-red: #DD0000;
   --flag-black: #1A1A1A;
@@ -78,24 +79,25 @@
   --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.25);
   --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.35);
 
-  --header-bg: rgba(10, 22, 40, 0.85);
+  --header-bg: rgba(10, 10, 15, 0.85);
 }
 
 /* ============ LIGHT THEME ============ */
 :root[data-theme="light"] {
   --bg: #FFFFFF;
-  --bg-elevated: #F4F6FA;
-  --bg-inset: #F0F2F6;
+  --bg-elevated: #F6F5FA;
+  --bg-inset: #EDEBF7;
 
-  --text-primary: #101828;
-  --text-secondary: #475467;
-  --text-tertiary: #667085;
+  --text-primary: #17151F;
+  --text-secondary: #4B4657;
+  --text-tertiary: #726C82;
 
-  --accent: #C2410C;   /* 4.8:1 */
-  --accent-strong: #9A3412; /* 6.8:1 */
-  --on-accent: #FFFFFF; /* white on #C2410C = 5.18:1 — button text (light theme) */
+  --accent: #6D28D9;        /* violet-700 — 5.9:1 on white */
+  --accent-strong: #5B21B6; /* violet-800 — 7:1, body links */
+  --accent-cyan: #0E7490;   /* darker cyan for light-bg contrast */
+  --on-accent: #FFFFFF;     /* white on violet — button text (light theme) */
 
-  --border: #E4E7EC;
+  --border: #E4E1F0;
 
   --success: #067647;
   --warning: #B54708;

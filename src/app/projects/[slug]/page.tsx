@@ -27,7 +27,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
   return (
     <div className="mx-auto max-w-3xl px-6 py-10">
       <p className="text-sm text-[var(--text-tertiary)]">
-        <Link href="/projects/" className="no-underline hover:text-[var(--accent)]">
+        <Link href="/projects/" className="no-underline hover:text-[var(--accent-strong)]">
           ← Alle Projekte
         </Link>
       </p>

@@ -17,8 +17,34 @@ const Hero3D = dynamic(() => import('./Hero3D'), {
  * Design: premium-minimal. Animated gradient background + 3D core
  * (gated by capability) + precise German copy. No hype.
  */
+const HEADLINE_PREFIX = 'Ich baue selbst-gehostete KI-Systeme, die ';
+const HEADLINE_HIGHLIGHT = 'nachweisbar funktionieren';
+const HEADLINE_SUFFIX = '.';
+const HEADLINE_FULL = HEADLINE_PREFIX + HEADLINE_HIGHLIGHT + HEADLINE_SUFFIX;
+const TYPE_SPEED_MS = 28;
+
 export default function Hero() {
   const [show3D, setShow3D] = useState(false);
+  const [typedCount, setTypedCount] = useState(0);
+
+  useEffect(() => {
+    const reduceMotion = window.matchMedia(
+      '(prefers-reduced-motion: reduce)'
+    ).matches;
+
+    if (reduceMotion) {
+      setTypedCount(HEADLINE_FULL.length);
+      return;
+    }
+
+    let i = 0;
+    const interval = setInterval(() => {
+      i += 1;
+      setTypedCount(i);
+      if (i >= HEADLINE_FULL.length) clearInterval(interval);
+    }, TYPE_SPEED_MS);
+    return () => clearInterval(interval);
+  }, []);
 
   useEffect(() => {
     // Gate 3D: WebGL support + enough device memory + no reduced-motion.
@@ -65,6 +91,28 @@ export default function Hero() {
     };
   }, []);
 
+  const prefixShown = HEADLINE_PREFIX.slice(
+    0,
+    Math.min(typedCount, HEADLINE_PREFIX.length)
+  );
+  const highlightShown = HEADLINE_HIGHLIGHT.slice(
+    0,
+    Math.min(
+      Math.max(typedCount - HEADLINE_PREFIX.length, 0),
+      HEADLINE_HIGHLIGHT.length
+    )
+  );
+  const suffixShown = HEADLINE_SUFFIX.slice(
+    0,
+    Math.min(
+      Math.max(
+        typedCount - HEADLINE_PREFIX.length - HEADLINE_HIGHLIGHT.length,
+        0
+      ),
+      HEADLINE_SUFFIX.length
+    )
+  );
+
   return (
     <section
       aria-label="Intro"
@@ -89,9 +137,12 @@ export default function Hero() {
           Software &amp; AI Engineer · München, Deutschland
         </p>
         <h1 className="titan-reveal visible mt-3 text-3xl font-bold text-[var(--text-primary)] md:text-5xl">
-          Ich baue selbst-gehostete KI-Systeme, die{' '}
-          <span className="text-[var(--accent)]">nachweisbar funktionieren</span>
-          .
+          <span className="sr-only">{HEADLINE_FULL}</span>
+          <span aria-hidden="true">
+            {prefixShown}
+            <span className="text-[var(--accent)]">{highlightShown}</span>
+            {suffixShown}
+          </span>
         </h1>
         <p className="titan-reveal visible mt-4 max-w-2xl text-base text-[var(--text-secondary)] md:text-lg">
           Vollständig selbst-gehostete AI Operating Systeme, private

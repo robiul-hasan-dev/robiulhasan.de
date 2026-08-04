@@ -31,7 +31,7 @@ export default async function KnowledgeNodePage({
   return (
     <div className="mx-auto max-w-3xl px-6 py-10">
       <p className="text-sm text-[var(--text-tertiary)]">
-        <Link href="/knowledge/" className="no-underline hover:text-[var(--accent)]">
+        <Link href="/knowledge/" className="no-underline hover:text-[var(--accent-strong)]">
           ← Alle Erkenntnisse
         </Link>
       </p>

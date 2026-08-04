@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import ThemeToggle from '@/components/ThemeToggle';
+import ShieldStrip from '@/components/ShieldStrip';
 
 export const metadata: Metadata = {
   title: {
@@ -18,6 +19,37 @@ export const metadata: Metadata = {
   },
 };
 
+const personJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Robiul Hasan',
+  jobTitle: 'Software & AI Engineer',
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'München',
+    addressCountry: 'Deutschland',
+  },
+  url: 'https://robiulhasan.de',
+  sameAs: [
+    'https://www.linkedin.com/in/robiulhasan',
+    'https://github.com/robiulhasan',
+  ],
+  knowsAbout: [
+    'Software Engineering',
+    'AI Systems',
+    'Self-hosted Infrastructure',
+    'Privacy',
+  ],
+};
+
+const websiteJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'robiulhasan.de',
+  url: 'https://robiulhasan.de',
+  inLanguage: 'de-DE',
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
@@ -28,6 +60,19 @@ export default function RootLayout({
         <script
           dangerouslySetInnerHTML={{
             __html: `(function(){try{var s=localStorage.getItem('theme');var t=s||(window.matchMedia('(prefers-color-scheme: light)').matches?'light':'dark');document.documentElement.setAttribute('data-theme',t);}catch(_e){document.documentElement.setAttribute('data-theme','dark');}})();`,
+          }}
+        />
+        {/* JSON-LD structured data (docs: app/guides/json-ld) */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(personJsonLd).replace(/</g, '\\u003c'),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(websiteJsonLd).replace(/</g, '\\u003c'),
           }}
         />
       </head>
@@ -42,7 +87,7 @@ export default function RootLayout({
           >
             <a
               href="/"
-              className="text-lg font-semibold text-[var(--text-primary)] no-underline hover:text-[var(--accent)]"
+              className="text-lg font-semibold text-[var(--text-primary)] no-underline hover:text-[var(--accent-strong)]"
             >
               robiulhasan.de
             </a>
@@ -59,7 +104,7 @@ export default function RootLayout({
                   <li key={href} className="m-0">
                     <a
                       href={href}
-                      className="text-sm text-[var(--text-secondary)] no-underline hover:text-[var(--accent)]"
+                      className="text-sm text-[var(--text-secondary)] no-underline hover:text-[var(--accent-strong)]"
                     >
                       {label}
                     </a>
@@ -73,23 +118,26 @@ export default function RootLayout({
         <main id="main">{children}</main>
         <footer className="border-t border-[var(--border)]">
           <div className="mx-auto flex max-w-4xl items-center justify-between px-6 py-6">
-            <p className="text-sm text-[var(--text-tertiary)]">
-              © 2026 Robiul Hasan · München
-            </p>
+            <div className="flex flex-col gap-1">
+              <p className="text-sm text-[var(--text-tertiary)]">
+                © 2026 Robiul Hasan · München
+              </p>
+              <ShieldStrip />
+            </div>
             <nav aria-label="Fußnavigation">
               <ul className="flex list-none gap-4 p-0">
                 <li>
-                  <a href="/impressum/" className="text-sm text-[var(--text-tertiary)] no-underline hover:text-[var(--accent)]">
+                  <a href="/impressum/" className="text-sm text-[var(--text-tertiary)] no-underline hover:text-[var(--accent-strong)]">
                     Impressum
                   </a>
                 </li>
                 <li>
-                  <a href="/datenschutz/" className="text-sm text-[var(--text-tertiary)] no-underline hover:text-[var(--accent)]">
+                  <a href="/datenschutz/" className="text-sm text-[var(--text-tertiary)] no-underline hover:text-[var(--accent-strong)]">
                     Datenschutz
                   </a>
                 </li>
                 <li>
-                  <a href="/docs/adr/" className="text-sm text-[var(--text-tertiary)] no-underline hover:text-[var(--accent)]">
+                  <a href="/docs/adr/" className="text-sm text-[var(--text-tertiary)] no-underline hover:text-[var(--accent-strong)]">
                     Architektur
                   </a>
                 </li>

@@ -15,7 +15,7 @@ export default function KnowledgeIndexPage() {
         {nodes.map((node) => (
           <article key={node.slug} className="rounded-xl border border-[var(--border)] bg-[var(--bg-elevated)] p-5">
             <h2 className="text-lg font-medium">
-              <Link href={`/knowledge/${node.slug}/`} className="no-underline hover:text-[var(--accent)]">
+              <Link href={`/knowledge/${node.slug}/`} className="no-underline hover:text-[var(--accent-strong)]">
                 {node.title}
               </Link>
             </h2>

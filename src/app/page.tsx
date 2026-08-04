@@ -4,6 +4,7 @@ import Hero from '@/components/Hero';
 import Reveal from '@/components/Reveal';
 import CountUp from '@/components/CountUp';
 import ContactForm from '@/components/ContactForm';
+import AIDemo from '@/components/AIDemo';
 
 export default function HomePage() {
   const projects = getProjects().slice(0, 3);
@@ -42,6 +43,11 @@ export default function HomePage() {
           <CountUp end={5} suffix="" label="Wissens-Seiten" />
           <CountUp end={100} suffix="%" label="Datenschutz-konform (DSGVO)" />
         </div>
+      </Reveal>
+
+      {/* AI demo — the craft proof, purely client-side */}
+      <Reveal className="py-12">
+        <AIDemo />
       </Reveal>
 
       {/* Featured work */}
@@ -103,7 +109,7 @@ export default function HomePage() {
                 <h3 className="mt-1 text-lg font-medium">
                   <Link
                     href={`/blog/${post.slug}/`}
-                    className="no-underline hover:text-[var(--accent)]"
+                    className="no-underline hover:text-[var(--accent-strong)]"
                   >
                     {post.title}
                   </Link>
