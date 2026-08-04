@@ -10,6 +10,8 @@ const nextConfig = {
   output: 'standalone',
   // Match the previous site's canonical URLs (SEO consistency — sitemap uses trailing slashes)
   trailingSlash: true,
+  // pg uses node built-ins (fs) at module level — keep it server-native, not bundled
+  serverExternalPackages: ['pg'],
 
   async headers() {
     return [

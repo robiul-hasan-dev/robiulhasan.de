@@ -3,6 +3,7 @@ import { getProjects, getPosts } from '@lib/content';
 import Hero from '@/components/Hero';
 import Reveal from '@/components/Reveal';
 import CountUp from '@/components/CountUp';
+import ContactForm from '@/components/ContactForm';
 
 export default function HomePage() {
   const projects = getProjects().slice(0, 3);
@@ -118,6 +119,24 @@ export default function HomePage() {
               Alle Artikel →
             </Link>
           </p>
+        </section>
+      </Reveal>
+      {/* Contact CTA — the conversion layer */}
+      <Reveal>
+        <section
+          aria-labelledby="contact"
+          className="mb-12 rounded-xl border border-[var(--border)] bg-[var(--bg-elevated)] p-6 md:p-8"
+        >
+          <h2 id="contact" className="text-2xl font-semibold">
+            Sprechen wir?
+          </h2>
+          <p className="mt-2 max-w-2xl text-sm text-[var(--text-secondary)]">
+            Du hast ein Projekt, eine Idee oder eine Frage? Schreib mir — ich
+            antworte in der Regel innerhalb von 48 Stunden.
+          </p>
+          <div className="mt-6">
+            <ContactForm />
+          </div>
         </section>
       </Reveal>
     </div>
