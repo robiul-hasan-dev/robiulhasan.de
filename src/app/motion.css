@@ -1,0 +1,144 @@
+/* ============================================================
+   Motion Foundation — titan-design-system.css
+   ADR-014: dark default + light, system-aware
+   Includes: scroll-reveal, micro-interactions, counter animation,
+             pulse dot, shimmer, float, fade-in-up
+   ============================================================ */
+
+@keyframes titan-scroll-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes titan-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes titan-fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes titan-pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.5); }
+}
+
+@keyframes titan-shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes titan-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes titan-counter {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes titan-gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Scroll reveal — applied via JS intersection observer */
+.titan-reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s var(--ease-out), transform 0.6s var(--ease-out);
+}
+
+.titan-reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger children */
+.titan-reveal-stagger > * {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.5s var(--ease-out), transform 0.5s var(--ease-out);
+}
+
+.titan-reveal-stagger.visible > *:nth-child(1) { transition-delay: 0ms; opacity: 1; transform: translateY(0); }
+.titan-reveal-stagger.visible > *:nth-child(2) { transition-delay: 100ms; opacity: 1; transform: translateY(0); }
+.titan-reveal-stagger.visible > *:nth-child(3) { transition-delay: 200ms; opacity: 1; transform: translateY(0); }
+.titan-reveal-stagger.visible > *:nth-child(4) { transition-delay: 300ms; opacity: 1; transform: translateY(0); }
+.titan-reveal-stagger.visible > *:nth-child(5) { transition-delay: 400ms; opacity: 1; transform: translateY(0); }
+.titan-reveal-stagger.visible > *:nth-child(6) { transition-delay: 500ms; opacity: 1; transform: translateY(0); }
+
+/* Pulse dot — live status indicator */
+.titan-pulse-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--success);
+  animation: titan-pulse-dot 2s ease-in-out infinite;
+}
+
+/* Shimmer — loading/skeleton effect */
+.titan-shimmer {
+  background: linear-gradient(
+    90deg,
+    var(--bg-elevated) 25%,
+    var(--bg-inset) 50%,
+    var(--bg-elevated) 75%
+  );
+  background-size: 200% 100%;
+  animation: titan-shimmer 1.5s ease-in-out infinite;
+}
+
+/* Float — subtle hover lift */
+.titan-float {
+  transition: transform var(--duration-fast) var(--ease-out);
+}
+
+.titan-float:hover {
+  transform: translateY(-4px);
+}
+
+/* Counter animation — for proof numbers */
+.titan-counter {
+  animation: titan-counter 0.6s var(--ease-out) both;
+}
+
+/* Gradient shift — hero background */
+.titan-gradient-shift {
+  background-size: 200% 200%;
+  animation: titan-gradient-shift 8s ease infinite;
+}
+
+/* Reduced motion — respect user preference */
+@media (prefers-reduced-motion: reduce) {
+  .titan-reveal,
+  .titan-reveal.visible,
+  .titan-reveal-stagger > *,
+  .titan-reveal-stagger.visible > * {
+    opacity: 1 !important;
+    transform: none !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .titan-pulse-dot,
+  .titan-shimmer,
+  .titan-gradient-shift {
+    animation: none !important;
+  }
+}
