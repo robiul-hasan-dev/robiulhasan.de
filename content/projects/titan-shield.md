@@ -16,18 +16,14 @@ Numbers captured directly from the running system:
 
 | Metric | Value | Meaning |
 |--------|-------|---------|
-| **Failed SSH attempts blocked** | **396 IPs banned total**, 5 currently banned | fail2ban catching brute-force attacks continuously |
-| **Attack sources** | 107.174.137.235, 165.154.227.158, 1.192.61.70, 172.208.48.177, 92.118.39.71 | Distributed botnet scanning |
-| **External ports exposed** | 22 (SSH), 80 (HTTP), 443 (HTTPS) only | Minimal attack surface — everything else closed |
+| **Failed SSH attempts blocked** | Hundreds of IPs banned | Automated brute-force protection active |
+| **Attack surface** | Only web + SSH ports exposed | Minimal attack surface — everything else closed |
 | **Scan cycle** | Every 30 minutes, autonomous | No human watching required |
+| **Real-world find** | An unexpected print-service port was detected and closed | Active monitoring catches real issues |
 
 ### Titan Shield Found a Real Issue — and It Got Fixed
 
-While capturing this evidence, Titan Shield's port scanner flagged **port 631 (CUPS printing)** listening on all interfaces:
-
-```
-[WARNING] [NETWORK] Unexpected port: 631 ([::]:631)
-```
+While capturing this evidence, Titan Shield's port scanner flagged an unexpected service port listening on all interfaces — it was closed immediately, demonstrating that autonomous monitoring catches what manual checks miss.
 
 This was a **latent exposure** — the cloud firewall blocked it externally, but the service was listening on 0.0.0.0. If the firewall config ever changed, the printer service would have been reachable from the internet.
 
@@ -86,5 +82,5 @@ cron (*/30) → titan-shield → checks (auth, ports, files, docker)
 
 ## Evidence References
 
-- Script: `/root/.hermes/scripts/titan-shield`
+- Script: managed automation (path not disclosed)
 - Alert log: stored in protected storage, never exposed

@@ -2,7 +2,7 @@
 title: "Titan/OS — A Self-Hosted AI Operating System"
 slug: "titan-os"
 status: "live"
-stack: ["PostgreSQL", "pgvector", "n8n", "Docker", "Python"]
+stack: ["PostgreSQL", "pgvector", "Docker", "Python"]
 published: true
 date: 2026-08-02
 summary: "Fourteen AI departments running as agents — intelligence, knowledge validation, quality gates, legal compliance, finance — all self-hosted on a single VPS."
@@ -16,30 +16,30 @@ A solo entrepreneur needs the organizational intelligence of a large company —
 
 ## Solution
 
-Titan/OS: 14 departments implemented as working agents:
+Titan/OS: a multi-agent operating system where specialized agents mirror company departments:
 
-- **EISRD** — external intelligence (26 sources, weekly briefings)
-- **CLIKSRO** — knowledge validation gate (evidence tiers, honeypots)
-- **CILQVEC** — quality gate (12-dimension checks, OS quality score)
-- **Legal & Compliance** — obligations, deadlines, German document generator
-- **Finance, Tax, Insurance, HR, R&D, Education, Advisory** — all with databases and cron schedules
+- **Intelligence agent** — external monitoring, weekly briefings
+- **Knowledge agent** — validation gates with evidence tiers
+- **Quality agent** — multi-dimension checks and a debt register
+- **Legal & Compliance** — obligations, deadlines, document generation
+- **Finance, Tax, Insurance, HR, R&D, Education, Advisory** — specialized workflows with structured data and schedules
 
 ## Architecture
 
 ```
 PostgreSQL 16 + pgvector (single source of truth)
     │
-    ├── EISRD (26 sources → findings)
-    ├── CLIKSRO (capture → validate → knowledge graph)
-    ├── CILQVEC (quality gate → debt register)
-    ├── Memory (knowledge graph, 36+ nodes, auto-linking)
-    └── 8 more departments (scripts + cron + tables)
+    ├── Intelligence agent (external sources → findings)
+    ├── Knowledge agent (capture → validate → knowledge graph)
+    ├── Quality agent (quality gate → debt register)
+    ├── Memory (knowledge graph, semantic auto-linking)
+    └── Specialized workflow agents (scripts + schedules + tables)
 ```
 
 **Key decisions:**
-- Everything self-hosted on own infrastructure (€0 marginal cost)
+- Everything self-hosted on own infrastructure
 - No VC-funded tools — only MIT/Apache/AGPL
-- 20+ cron jobs, Sunday unified digest
+- Automated recurring workflows with a unified digest
 - Knowledge graph with semantic auto-linking (pgvector)
 
 ## Live Evidence
@@ -47,9 +47,7 @@ PostgreSQL 16 + pgvector (single source of truth)
 | Metric | Result |
 |--------|--------|
 | Departments live | 14 |
-| Cron jobs | 20+ |
 | Database tables | 169 |
-| Knowledge nodes | 36+ (auto-linked) |
 | Cost | €0 marginal |
 
 ## Learnings
@@ -61,8 +59,8 @@ PostgreSQL 16 + pgvector (single source of truth)
 ## Self-Critique
 
 - Some departments remain single-purpose scripts — the gap between "script" and "department" is real
-- EISRD Stage-2 LLM synthesis not yet built (keyword matching only)
-- Cross-department orchestration (Sunday digest) is new — needs months of real use
+- LLM synthesis for intelligence workflows not yet built (keyword matching only)
+- Cross-department orchestration (unified digest) is new — needs months of real use
 
 ## Evidence References
 

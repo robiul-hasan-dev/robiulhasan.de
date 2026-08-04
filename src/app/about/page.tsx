@@ -1,12 +1,12 @@
 export const metadata = { title: 'Über mich' };
 
 const skills = [
-  { name: 'Docker', level: 4, evidence: 'Mehrere Container in Produktion (Datenbank, Automation, Suche)' },
-  { name: 'PostgreSQL + pgvector', level: 4, evidence: '169 Tabellen, semantische Einbettungen, Wissensgraph' },
-  { name: 'Linux / SSH-Sicherheit', level: 4, evidence: 'Gehärteter Server, private Netzwerk-Mesh, Titan Shield (30-Min-Scans)' },
-  { name: 'Python-Automatisierung', level: 4, evidence: '40+ Skripte: Intelligence, Sicherheit, Finanzen, Backup — 20+ Cron-Jobs' },
-  { name: 'KI-Agenten-Systeme', level: 4, evidence: '3 Agenten-Gates live: EISRD (Intelligence), CLIKSRO (Wissen), CILQVEC (Qualität)' },
-  { name: 'Systemarchitektur', level: 3, evidence: '14-Abteilungen-OS entworfen, Engineering-Blueprint, ADRs' },
+  { name: 'Docker', level: 4, evidence: 'Container-Orchestrierung für Web, Datenbank und Dienste' },
+  { name: 'PostgreSQL + pgvector', level: 4, evidence: 'Relationale Daten + semantische Einbettungen, Wissensgraph' },
+  { name: 'Linux / SSH-Sicherheit', level: 4, evidence: 'Server-Härtung, Fail2ban, private Netzwerk-Mesh, Security-Scans' },
+  { name: 'Python-Automatisierung', level: 4, evidence: 'Automatisierte Workflows für Intelligence, Sicherheit und Backup' },
+  { name: 'KI-Agenten-Systeme', level: 4, evidence: 'Multi-Agenten-Architekturen mit Qualitäts- und Wissens-Gates' },
+  { name: 'Systemarchitektur', level: 3, evidence: 'Modulare System-Designs, Engineering-Dokumentation, ADRs' },
 ];
 
 export default function AboutPage() {
@@ -25,8 +25,8 @@ export default function AboutPage() {
           Informatik-Abschluss (Bangladesch), dann humanitäre Arbeit bei <strong className="text-[var(--text-primary)]">IOM</strong>,{' '}
           <strong className="text-[var(--text-primary)]">DRC</strong> und{' '}
           <strong className="text-[var(--text-primary)]">MSF</strong> — Organisationen, in denen Technologie
-          Menschenleben erleichtert, nicht nur Quartalszahlen. Heute lebe ich in München und baue ein
-          vollständig selbst-gehostetes KI-Betriebssystem, das 14 Abteilungen als Agenten betreibt.
+ Menschenleben erleichtert, nicht nur Quartalszahlen. Heute lebe ich in München und baue
+ ein vollständig selbst-gehostetes KI-System mit mehreren spezialisierten Agenten.
         </p>
         <p className="mt-3 text-[var(--text-secondary)]">
           Meine Überzeugung: <strong className="text-[var(--text-primary)]">Arbeit spricht lauter als Worte.</strong>{' '}

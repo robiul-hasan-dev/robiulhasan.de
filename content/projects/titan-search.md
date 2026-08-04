@@ -29,7 +29,7 @@ A fully self-hosted search stack:
 ## Architecture
 
 ```
-AI Agents (Hermes, Claude, Gemini)
+AI Agents (multi-provider)
     │
     ▼
 titan-search (synthesis wrapper)

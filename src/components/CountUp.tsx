@@ -7,7 +7,7 @@ import { useEffect, useRef, useState } from 'react';
  * Starts when scrolled into view. Respects prefers-reduced-motion (jumps to end).
  *
  * Usage:
- *   <CountUp end={919} suffix="+" label="SSH-Brute-Force blockiert" />
+ *   <CountUp end={42} suffix="+" label="Beispiel-Zahl" />
  */
 export default function CountUp({
   end,

@@ -14,33 +14,33 @@ export default function HomePage() {
       {/* Hero — the wow layer (Release 1/2) */}
       <Hero />
 
-      {/* Status strip — live trust signal */}
+      {/* Status strip — safe public trust signal (no internal metrics) */}
       <Reveal>
         <section
-          aria-label="System-Status"
+          aria-label="Positionierung"
           className="rounded-lg border border-[var(--border)] bg-[var(--bg-elevated)] p-4"
         >
           <p className="text-sm text-[var(--text-secondary)]">
             <span className="titan-pulse-dot mr-2 inline-block align-middle" />
-            Systeme online
+            Offen für neue Projekte
           </p>
           <p className="mt-1 text-sm text-[var(--text-tertiary)]">
-            14 Abteilungen · 40+ Scripts · 23 Cron-Jobs
+            Software-Engineering · KI-Systeme · Sicherheit
           </p>
           <p className="text-sm text-[var(--text-tertiary)]">
-            100% selbst-gehostet · €0 Extra-Kosten
+            Dokumentiert · Getestet · Datenschutz-konform
           </p>
         </section>
       </Reveal>
 
-      {/* Proof cards — evidence counter animation */}
+      {/* Proof cards — public evidence only (no internal operations data) */}
       <Reveal className="py-12">
         <h2 className="mb-6 text-2xl font-semibold">Nachweisbare Arbeit</h2>
         <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-4">
-          <CountUp end={919} suffix="+" label="SSH-Brute-Force blockiert" />
-          <CountUp end={14} suffix="" label="Aktive Abteilungen" />
-          <CountUp end={40} suffix="+" label="Automatisierte Scripts" />
-          <CountUp end={23} suffix="" label="Cron-Jobs im Betrieb" />
+          <CountUp end={3} suffix="" label="Projekte dokumentiert" />
+          <CountUp end={4} suffix="" label="Artikel veröffentlicht" />
+          <CountUp end={5} suffix="" label="Wissens-Seiten" />
+          <CountUp end={100} suffix="%" label="Datenschutz-konform (DSGVO)" />
         </div>
       </Reveal>
 
