@@ -21,7 +21,9 @@ export default function Hero() {
   const [show3D, setShow3D] = useState(false);
 
   useEffect(() => {
-    // Gate 3D: WebGL support + enough device memory + no reduced-motion
+    // Gate 3D: WebGL support + enough device memory + no reduced-motion.
+    // DEFER until after first paint (requestIdleCallback) so the 231KB three.js
+    // chunk never competes with LCP — it loads only when the browser is idle.
     const reduceMotion = window.matchMedia(
       '(prefers-reduced-motion: reduce)'
     ).matches;
@@ -36,7 +38,31 @@ export default function Hero() {
     const mem = (navigator as unknown as { deviceMemory?: number })
       .deviceMemory;
     const enoughMem = typeof mem === 'undefined' || mem >= 4;
-    setShow3D(!reduceMotion && webgl && enoughMem);
+
+    if (reduceMotion || !webgl || !enoughMem) return;
+
+    const load3D = () => setShow3D(true);
+    const idle =
+      'requestIdleCallback' in window
+        ? (window as unknown as {
+            requestIdleCallback: (cb: () => void, opts?: object) => number;
+          }).requestIdleCallback
+        : (cb: () => void) => setTimeout(cb, 500);
+
+    // Small delay after idle → well after LCP (typically <2.5s)
+    let timer: ReturnType<typeof setTimeout> | null = null;
+    const id = idle(() => {
+      timer = setTimeout(load3D, 1500);
+    });
+    return () => {
+      if (typeof id === 'number') {
+        (window as unknown as { cancelIdleCallback: (i: number) => void })
+          .cancelIdleCallback?.(id);
+      } else {
+        clearTimeout(id);
+      }
+      if (timer) clearTimeout(timer);
+    };
   }, []);
 
   return (

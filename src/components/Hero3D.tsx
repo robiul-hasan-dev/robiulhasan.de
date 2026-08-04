@@ -2,23 +2,24 @@
 
 import { useRef, useState } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { Points, PointMaterial } from '@react-three/drei';
 import * as THREE from 'three';
 
 /**
  * Hero3D — abstract "core" visual for the hero.
  * A rotating icosahedron wireframe + orbiting particle field.
+ * Uses raw three.js primitives (no drei) — keeps the lazy chunk lean.
  *
- * Performance gates (in parent):
+ * Performance gates (in parent Hero):
  *  - prefers-reduced-motion → not rendered
  *  - low deviceMemory / no WebGL → fallback (static gradient)
  *  - lazy-loaded via dynamic import → not in initial bundle
+ *  - deferred via requestIdleCallback → never blocks LCP
  */
 
-function ParticleField({ count = 900 }: { count?: number }) {
+function ParticleField({ count = 700 }: { count?: number }) {
   const ref = useRef<THREE.Points>(null);
 
-  // Generate positions once (memoized by useRef)
+  // Positions generated once (Float32Array)
   const positions = useRef(
     new Float32Array(
       Array.from({ length: count * 3 }, () => (Math.random() - 0.5) * 6)
@@ -33,16 +34,22 @@ function ParticleField({ count = 900 }: { count?: number }) {
   });
 
   return (
-    <Points ref={ref} positions={positions} stride={3} frustumCulled={false}>
-      <PointMaterial
-        transparent
+    <points ref={ref} frustumCulled={false}>
+      <bufferGeometry>
+        <bufferAttribute
+          attach="attributes-position"
+          args={[positions, 3]}
+        />
+      </bufferGeometry>
+      <pointsMaterial
         color="#FF5A00"
-        size={0.015}
+        size={0.02}
         sizeAttenuation
-        depthWrite={false}
+        transparent
         opacity={0.7}
+        depthWrite={false}
       />
-    </Points>
+    </points>
   );
 }
 
