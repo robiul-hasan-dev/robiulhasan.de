@@ -5,7 +5,7 @@ status: "live"
 stack: ["PostgreSQL", "pgvector", "Docker", "Python"]
 published: true
 date: 2026-08-02
-summary: "Fourteen AI departments running as agents — intelligence, knowledge validation, quality gates, legal compliance, finance — all self-hosted on a single VPS."
+summary: "A multi-agent AI operating system — intelligence, knowledge validation, quality gates, legal compliance, finance — all self-hosted on a single VPS."
 tier: "A"
 tags: ["ai-agents", "architecture", "self-hosted", "automation"]
 ---
@@ -46,9 +46,8 @@ PostgreSQL 16 + pgvector (single source of truth)
 
 | Metric | Result |
 |--------|--------|
-| Departments live | 14 |
-| Database tables | 169 |
-| Cost | €0 marginal |
+| Departments live | Yes — multi-agent (self-hosted) |
+| Database tables | Managed via PostgreSQL |
 
 ## Learnings
 

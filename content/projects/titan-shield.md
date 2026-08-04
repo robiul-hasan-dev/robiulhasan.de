@@ -27,7 +27,7 @@ While capturing this evidence, Titan Shield's port scanner flagged an unexpected
 
 This was a **latent exposure** — the cloud firewall blocked it externally, but the service was listening on 0.0.0.0. If the firewall config ever changed, the printer service would have been reachable from the internet.
 
-**The fix (applied immediately):** `ufw deny 631/tcp` — defense in depth at the second firewall layer. Verified closed from an external port check.
+**The fix (applied immediately):** the service was firewalled at the host level — defense in depth at the second layer. Verified closed from an external port check.
 
 > This is the system working as designed: *detect → alert → fix → verify*. The monitoring isn't decorative — it found a real misconfiguration that manual checking would have missed.
 
@@ -65,7 +65,7 @@ cron (*/30) → titan-shield → checks (auth, ports, files, docker)
 | Metric | Result |
 |--------|--------|
 | Scan frequency | Every 30 min |
-| Alert log entries | 430+ |
+| Alert log entries | Continuous, persistent |
 | False alerts after fix | 0 (silent = clean) |
 
 ## Learnings

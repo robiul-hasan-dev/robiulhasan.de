@@ -7,7 +7,7 @@ evidence:
   - "42 Ergebnisse pro Anfrage, unbegrenztes Volumen, €0 Kosten"
   - "Kein einzelner Suchanbieter kann ein Nutzungsprofil aufbauen (Metasearch-Effekt)"
 validationTier: "A"
-source: "Eigene Projekterfahrung + EPEC-Architektur-Entscheidungen (ADR-010)"
+source: "Eigene Projekterfahrung + dokumentierte Architektur-Entscheidungen"
 date: 2026-08-02
 tags: ["self-hosting", "privacy", "infrastructure"]
 ---
