@@ -35,7 +35,9 @@ export default function HomePage() {
       </Reveal>
 
       {/* Proof cards — public evidence only (no internal operations data) */}
-      <Reveal className="py-12">
+      <Reveal className="py-[var(--space-24)]">
+        <div className="divider-gradient" aria-hidden="true" />
+        <p className="section-eyebrow">01 — Nachweise</p>
         <h2 className="mb-6 text-2xl font-semibold">Nachweisbare Arbeit</h2>
         <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-4">
           <CountUp end={3} suffix="" label="Projekte dokumentiert" />
@@ -46,13 +48,17 @@ export default function HomePage() {
       </Reveal>
 
       {/* AI demo — the craft proof, purely client-side */}
-      <Reveal className="py-12">
+      <Reveal className="py-[var(--space-24)]">
+        <div className="divider-gradient" aria-hidden="true" />
+        <p className="section-eyebrow">02 — Interaktiv</p>
         <AIDemo />
       </Reveal>
 
       {/* Featured work */}
       <Reveal>
-        <section className="pb-12" aria-labelledby="featured">
+        <section className="pb-[var(--space-24)]" aria-labelledby="featured">
+          <div className="divider-gradient" aria-hidden="true" />
+          <p className="section-eyebrow">03 — Arbeit</p>
           <h2 id="featured" className="mb-6 text-2xl font-semibold">
             Ausgewählte Arbeit
           </h2>
@@ -61,7 +67,7 @@ export default function HomePage() {
               <Link
                 key={p.slug}
                 href={`/projects/${p.slug}/`}
-                className="titan-float rounded-xl border border-[var(--border)] bg-[var(--bg-elevated)] p-5 no-underline transition-colors hover:border-[var(--accent)]"
+                className="titan-float shadow-ambient rounded-xl border border-[var(--border)] bg-[var(--bg-elevated)] p-5 no-underline transition-colors hover:border-[var(--accent)]"
               >
                 <h3 className="text-lg font-medium text-[var(--text-primary)]">
                   {p.title}
@@ -73,7 +79,7 @@ export default function HomePage() {
             ))}
             <Link
               href="/lab/"
-              className="titan-float rounded-xl border border-[var(--border)] bg-[var(--bg-elevated)] p-5 no-underline transition-colors hover:border-[var(--accent)]"
+              className="titan-float shadow-ambient rounded-xl border border-[var(--border)] bg-[var(--bg-elevated)] p-5 no-underline transition-colors hover:border-[var(--accent)]"
             >
               <h3 className="text-lg font-medium text-[var(--text-primary)]">
                 Lab — Live-Demos
@@ -89,7 +95,9 @@ export default function HomePage() {
 
       {/* Latest posts */}
       <Reveal>
-        <section className="pb-12" aria-labelledby="latest">
+        <section className="pb-[var(--space-24)]" aria-labelledby="latest">
+          <div className="divider-gradient" aria-hidden="true" />
+          <p className="section-eyebrow">04 — Artikel</p>
           <h2 id="latest" className="mb-6 text-2xl font-semibold">
             Neueste Artikel
           </h2>
@@ -131,7 +139,7 @@ export default function HomePage() {
       <Reveal>
         <section
           aria-labelledby="contact"
-          className="mb-12 rounded-xl border border-[var(--border)] bg-[var(--bg-elevated)] p-6 md:p-8"
+          className="shadow-ambient mb-[var(--space-24)] rounded-xl border border-[var(--border)] bg-[var(--bg-elevated)] p-6 md:p-8"
         >
           <h2 id="contact" className="text-2xl font-semibold">
             Sprechen wir?

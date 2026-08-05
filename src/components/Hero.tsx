@@ -128,11 +128,23 @@ export default function Hero() {
         }}
       />
 
+      {/* Ambient glow blobs — static, decorative, behind content */}
+      <div
+        aria-hidden="true"
+        className="glow-blob-violet"
+        style={{ width: 480, height: 480, top: -160, left: -120 }}
+      />
+      <div
+        aria-hidden="true"
+        className="glow-blob-cyan"
+        style={{ width: 420, height: 420, top: 40, right: -140 }}
+      />
+
       {/* 3D core — only when capable */}
       {show3D && <Hero3D />}
 
       {/* Content layer */}
-      <div className="relative mx-auto max-w-4xl px-6">
+      <div className="relative z-10 mx-auto max-w-4xl px-6">
         <p className="titan-reveal visible text-sm text-[var(--text-tertiary)]">
           Software &amp; AI Engineer · München, Deutschland
         </p>
@@ -140,7 +152,7 @@ export default function Hero() {
           <span className="sr-only">{HEADLINE_FULL}</span>
           <span aria-hidden="true">
             {prefixShown}
-            <span className="text-[var(--accent)]">{highlightShown}</span>
+            <span className="text-gradient-brand">{highlightShown}</span>
             {suffixShown}
           </span>
         </h1>
@@ -152,7 +164,7 @@ export default function Hero() {
         <div className="titan-reveal visible mt-8 flex flex-wrap gap-4">
           <Link
             href="/projects/"
-            className="titan-float rounded-md bg-[var(--accent)] px-5 py-2.5 text-sm font-medium text-[var(--on-accent)] no-underline hover:opacity-90"
+            className="btn-gradient rounded-md px-5 py-2.5 text-sm font-medium text-[var(--on-accent)] no-underline"
           >
             Projekte ansehen
           </Link>

@@ -77,17 +77,18 @@ export default function RootLayout({
         />
       </head>
       <body className="bg-[var(--bg)] text-[var(--text-primary)] antialiased">
+        <div className="grain-overlay" aria-hidden="true" />
         <a href="#main" className="skip-link">
           Zum Inhalt springen
         </a>
-        <header className="border-b border-[var(--border)] bg-[var(--header-bg)] backdrop-blur-sm">
+        <header className="relative z-40 border-b border-[var(--border)] bg-[var(--header-bg)] backdrop-blur-sm">
           <nav
             aria-label="Hauptnavigation"
             className="mx-auto flex max-w-4xl items-center justify-between px-6 py-4"
           >
             <a
               href="/"
-              className="text-lg font-semibold text-[var(--text-primary)] no-underline hover:text-[var(--accent-strong)]"
+              className="nav-link text-lg font-semibold text-[var(--text-primary)] no-underline hover:text-[var(--accent-strong)]"
             >
               robiulhasan.de
             </a>
@@ -104,7 +105,7 @@ export default function RootLayout({
                   <li key={href} className="m-0">
                     <a
                       href={href}
-                      className="text-sm text-[var(--text-secondary)] no-underline hover:text-[var(--accent-strong)]"
+                      className="nav-link text-sm text-[var(--text-secondary)] no-underline hover:text-[var(--accent-strong)]"
                     >
                       {label}
                     </a>
@@ -127,17 +128,17 @@ export default function RootLayout({
             <nav aria-label="Fußnavigation">
               <ul className="flex list-none gap-4 p-0">
                 <li>
-                  <a href="/impressum/" className="text-sm text-[var(--text-tertiary)] no-underline hover:text-[var(--accent-strong)]">
+                  <a href="/impressum/" className="nav-link text-sm text-[var(--text-tertiary)] no-underline hover:text-[var(--accent-strong)]">
                     Impressum
                   </a>
                 </li>
                 <li>
-                  <a href="/datenschutz/" className="text-sm text-[var(--text-tertiary)] no-underline hover:text-[var(--accent-strong)]">
+                  <a href="/datenschutz/" className="nav-link text-sm text-[var(--text-tertiary)] no-underline hover:text-[var(--accent-strong)]">
                     Datenschutz
                   </a>
                 </li>
                 <li>
-                  <a href="/docs/adr/" className="text-sm text-[var(--text-tertiary)] no-underline hover:text-[var(--accent-strong)]">
+                  <a href="/docs/adr/" className="nav-link text-sm text-[var(--text-tertiary)] no-underline hover:text-[var(--accent-strong)]">
                     Architektur
                   </a>
                 </li>
