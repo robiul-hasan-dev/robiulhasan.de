@@ -1,4 +1,54 @@
+# Docker build context hygiene — keep the image lean + secrets-free.
+# Context is the entire repo dir; everything here is EXCLUDED from the
+# build context (and from `COPY . .`).
+
+# ── Dependencies / build artifacts (regenerated in-image) ──
 node_modules
-.git
 .next
-npm-debug.log
+out
+build
+dist
+*.tsbuildinfo
+npm-debug.log*
+yarn-error.log*
+
+# ── VCS / CI ──
+.git
+.gitignore
+.github
+.hg
+.svn
+
+# ── Secrets — NEVER let these enter an image layer ──
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*id_rsa*
+*id_ed25519*
+.vault
+.credentials*
+
+# ── Local tooling / editor ──
+.idea
+.vscode
+*.swp
+.DS_Store
+
+# ── Tests / docs / benchmarks (not needed in the image) ──
+tests
+test
+coverage
+__pycache__
+*.pyc
+.venv
+venv
+benchmarks
+*.md
+scripts
+
+# ── Local scratch ──
+*.log
+.tmp
+.cache
