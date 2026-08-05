@@ -6,7 +6,7 @@ export const metadata = { title: 'Projekte' };
 export default function ProjectsIndexPage() {
   const projects = getProjects();
   return (
-    <div className="mx-auto max-w-4xl px-6 py-10">
+    <div className="mx-auto max-w-6xl px-6 py-10 md:px-10">
       <h1 className="text-3xl font-bold">Projekte</h1>
       <p className="mt-2 text-[var(--text-secondary)]">
         Nachweisbare Arbeit — mit Live-Evidenz, nicht nur Behauptungen.

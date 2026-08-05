@@ -116,7 +116,7 @@ export default function Hero() {
   return (
     <section
       aria-label="Intro"
-      className="relative overflow-hidden py-16 md:py-24"
+      className="relative overflow-hidden py-20 md:py-32"
     >
       {/* Animated gradient background (CSS, cheap) */}
       <div
@@ -144,7 +144,7 @@ export default function Hero() {
       {show3D && <Hero3D />}
 
       {/* Content layer */}
-      <div className="relative z-10 mx-auto max-w-4xl px-6">
+      <div className="relative z-10 mx-auto max-w-6xl px-6 md:px-10">
         <p className="titan-reveal visible text-sm text-[var(--text-tertiary)]">
           Software &amp; AI Engineer · München, Deutschland
         </p>

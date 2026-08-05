@@ -11,7 +11,7 @@ export default function HomePage() {
   const posts = getPosts().slice(0, 3);
 
   return (
-    <div className="mx-auto max-w-4xl px-6">
+    <div className="mx-auto max-w-6xl px-6 md:px-10">
       {/* Hero — the wow layer (Release 1/2) */}
       <Hero />
 
@@ -62,7 +62,7 @@ export default function HomePage() {
           <h2 id="featured" className="mb-6 text-2xl font-semibold">
             Ausgewählte Arbeit
           </h2>
-          <div className="grid gap-4 md:grid-cols-2">
+          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
             {projects.map((p) => (
               <Link
                 key={p.slug}

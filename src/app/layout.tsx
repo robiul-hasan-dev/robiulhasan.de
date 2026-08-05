@@ -84,7 +84,7 @@ export default function RootLayout({
         <header className="relative z-40 border-b border-[var(--border)] bg-[var(--header-bg)] backdrop-blur-sm">
           <nav
             aria-label="Hauptnavigation"
-            className="mx-auto flex max-w-4xl items-center justify-between px-6 py-4"
+            className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4 md:px-10"
           >
             <a
               href="/"
@@ -118,7 +118,7 @@ export default function RootLayout({
         </header>
         <main id="main">{children}</main>
         <footer className="border-t border-[var(--border)]">
-          <div className="mx-auto flex max-w-4xl items-center justify-between px-6 py-6">
+          <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-6 md:px-10">
             <div className="flex flex-col gap-1">
               <p className="text-sm text-[var(--text-tertiary)]">
                 © 2026 Robiul Hasan · München
