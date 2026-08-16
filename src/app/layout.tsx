@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import ThemeToggle from '@/components/ThemeToggle';
+import SiteNav from '@/components/SiteNav';
 import ShieldStrip from '@/components/ShieldStrip';
 
 export const metadata: Metadata = {
@@ -93,25 +94,7 @@ export default function RootLayout({
               robiulhasan.de
             </a>
             <div className="flex items-center gap-5">
-              <ul className="flex list-none gap-5 p-0">
-                {[
-                  ['Start', '/'],
-                  ['Projekte', '/projects/'],
-                  ['Lab', '/lab/'],
-                  ['Blog', '/blog/'],
-                  ['Wissen', '/knowledge/'],
-                  ['Über mich', '/about/'],
-                ].map(([label, href]) => (
-                  <li key={href} className="m-0">
-                    <a
-                      href={href}
-                      className="nav-link text-sm text-[var(--text-secondary)] no-underline hover:text-[var(--accent-strong)]"
-                    >
-                      {label}
-                    </a>
-                  </li>
-                ))}
-              </ul>
+              <SiteNav />
               <ThemeToggle />
             </div>
           </nav>
