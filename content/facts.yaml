@@ -1,0 +1,209 @@
+# =============================================================================
+# TRUTH REGISTRY — robiulhasan.de
+# Master Implementation Directive §1.2 (Truth protocol).
+#
+# Every public claim on the site MUST have an entry here. Nothing is published
+# from memory or invention — the site renders `publicWording`, and only when
+# `status` permits.
+#
+# status:
+#   verified          — checked against primary evidence; publishable
+#   owner-confirmed    — Robiul confirmed in writing; publishable
+#   needs-verification — NOT publishable; publicWording MUST be null
+#   private            — real but must never be exposed; publicWording MUST be null
+#
+# lifecycle (for project claims): concept | prototype | in-progress |
+#                                 field-experience | production
+#
+# HARD RULES (enforced by lib/schema.ts in a later slice):
+#   - needs-verification / private  => publicWording: null
+#   - verified / owner-confirmed     => publicWording + evidence + lastVerified required
+#   - Never publish: unsupported metrics, "100% DSGVO", "AI intelligence",
+#     awards, client logos, testimonials, employer endorsements, revenue,
+#     user counts, or "production" without verification (directive §1.2, §10).
+#   - Missing owner data => "OWNER INPUT REQUIRED"; never invent values.
+#
+# Dates are ISO 8601 (YYYY-MM-DD).
+# =============================================================================
+version: 1
+lastReviewed: 2026-08-17
+
+facts:
+  # ---- Verified content counts (Phase 0 §3) --------------------------------
+  - id: projects-documented
+    claim: Three projects are documented on the site.
+    status: verified
+    evidence: content/projects/*.md — 3 files present
+    publicWording: 3 Projekte dokumentiert
+    lastVerified: 2026-08-17
+
+  - id: posts-published
+    claim: Four articles are published.
+    status: verified
+    evidence: content/posts/*.md — 4 files with published: true
+    publicWording: 4 Artikel veröffentlicht
+    lastVerified: 2026-08-17
+
+  - id: knowledge-pages
+    claim: Five knowledge pages exist.
+    status: verified
+    evidence: content/knowledge/*.md — 5 files
+    publicWording: 5 Wissens-Seiten
+    lastVerified: 2026-08-17
+
+  - id: shield-status-online
+    claim: An operational status signal reports systems online.
+    status: verified
+    evidence: /data/shield.json read live by ShieldStrip; freshness-gated (90 min)
+    publicWording: Systeme online
+    lastVerified: 2026-08-17
+
+  # ---- Claims to REMOVE or reword (directive §10 / Phase 0 §3) --------------
+  - id: dsgvo-100-percent
+    claim: The site is "100% Datenschutz-konform (DSGVO)".
+    status: needs-verification
+    evidence: No qualified legal review exists.
+    publicWording: null
+    lastVerified: null
+    note: >-
+      FORBIDDEN absolute legal claim (directive §10). Must be removed from any
+      public surface. Do not restate as any "100%"/"fully compliant" wording.
+
+  - id: datenschutz-konform-badge
+    claim: "Dokumentiert · Getestet · Datenschutz-konform" trust strip.
+    status: needs-verification
+    evidence: "Documented/tested partially true; compliance unverified."
+    publicWording: null
+    lastVerified: null
+    note: >-
+      Soften before publishing. "Datenschutz-konform" is a compliance claim
+      needing legal review; drop that third item or reword to a factual,
+      non-absolute statement in a later content slice.
+
+  - id: open-for-work
+    claim: Robiul is open to new projects / collaboration.
+    status: owner-confirmed
+    evidence: OWNER INPUT REQUIRED — confirm exact availability wording.
+    publicWording: Projektanfragen und Zusammenarbeit prüfen
+    lastVerified: 2026-08-17
+    note: >-
+      Reworded from "Offen für neue Projekte" for precision. Confirm final
+      wording with Robiul before relying on it.
+
+  - id: uncheckable-metrics
+    claim: Performance-style metrics such as "42 results/query".
+    status: needs-verification
+    evidence: Not reproducible / not evidenced.
+    publicWording: null
+    lastVerified: null
+    note: Remove or replace with a dated, evidenced measurement. Never invent.
+
+  # ---- Project lifecycle labels (needs-verification until scoped) ----------
+  - id: project-uni-brew-os
+    claim: Uni Brew OS — café operations product/case study.
+    status: needs-verification
+    lifecycle: prototype
+    evidence: OWNER INPUT REQUIRED — publishable screenshots/scope/role.
+    publicWording: null
+    lastVerified: null
+    note: Position as operations/product case study, not deployed commercial success.
+
+  - id: project-governed-ai-workspace
+    claim: Governed AI Workspace — architecture/research.
+    status: needs-verification
+    lifecycle: in-progress
+    evidence: OWNER INPUT REQUIRED — public-safe architecture notes; no secrets.
+    publicWording: null
+    lastVerified: null
+    note: Architecture/research framing only unless production use is verified.
+
+  - id: project-german-learning-companion
+    claim: German Learning Companion — product concept/prototype.
+    status: needs-verification
+    lifecycle: concept
+    evidence: OWNER INPUT REQUIRED — prototype flow; what is/isn't tested.
+    publicWording: null
+    lastVerified: null
+
+  # ---- Identity / background (verify against CV before publishing) ---------
+  - id: humanitarian-background
+    claim: Humanitarian field experience (e.g. IOM / DRC / MSF).
+    status: needs-verification
+    lifecycle: field-experience
+    evidence: OWNER INPUT REQUIRED — roles, organisations, dates vs CV/certificates.
+    publicWording: null
+    lastVerified: null
+    note: Anonymise beneficiaries/sensitive ops. Publish roles/dates only after verification.
+
+  - id: degree-status
+    claim: Computer science degree / study status.
+    status: needs-verification
+    evidence: OWNER INPUT REQUIRED — exact degree wording and status.
+    publicWording: null
+    lastVerified: null
+
+  - id: german-b1
+    claim: German language level (B1).
+    status: needs-verification
+    evidence: OWNER INPUT REQUIRED — approved wording / certificate status.
+    publicWording: null
+    lastVerified: null
+
+  # ---- Professional-identity links (withheld until verified) ---------------
+  - id: github-url
+    claim: Verified GitHub profile URL.
+    status: needs-verification
+    evidence: OWNER INPUT REQUIRED — confirm the real, owned account URL.
+    publicWording: null
+    lastVerified: null
+    note: The layout JSON-LD currently hardcodes an UNVERIFIED github URL — remove in the SEO slice.
+
+  - id: linkedin-url
+    claim: Verified LinkedIn profile URL.
+    status: needs-verification
+    evidence: OWNER INPUT REQUIRED — confirm the real, owned profile URL.
+    publicWording: null
+    lastVerified: null
+    note: The layout JSON-LD currently hardcodes an UNVERIFIED linkedin URL — remove in the SEO slice.
+
+  - id: contact-email
+    claim: Preferred professional contact email.
+    status: needs-verification
+    evidence: OWNER INPUT REQUIRED — do not publish a personal email without approval (directive §1.3).
+    publicWording: null
+    lastVerified: null
+
+  - id: headshot
+    claim: Professional headshot (real photography of Robiul).
+    status: needs-verification
+    evidence: OWNER INPUT REQUIRED — supplied, approved image. Never synthesize his face.
+    publicWording: null
+    lastVerified: null
+
+  - id: cv-download
+    claim: Downloadable / printable CV.
+    status: needs-verification
+    evidence: OWNER INPUT REQUIRED — privacy-reviewed CV source.
+    publicWording: null
+    lastVerified: null
+
+  - id: impressum-address
+    claim: Impressum legal address (DDG §5).
+    status: needs-verification
+    evidence: OWNER INPUT REQUIRED — lawful address solution; never home address without approval.
+    publicWording: null
+    lastVerified: null
+    note: HIGH legal risk while placeholders are live (Phase 0 §6). Needs qualified advice.
+
+  # ---- Positioning (directive §2.3) ----------------------------------------
+  - id: core-positioning
+    claim: Robiul's core professional positioning statement.
+    status: owner-confirmed
+    evidence: Directive §2.3 recommended position; confirm with Robiul.
+    publicWording: >-
+      Operations-minded technologist building practical, human-controlled
+      digital and AI systems from real-world problems.
+    lastVerified: 2026-08-17
+    note: >-
+      Do NOT use "AI expert", "senior full-stack engineer", "cybersecurity
+      expert", or "founder of a production platform" unless separately verified.

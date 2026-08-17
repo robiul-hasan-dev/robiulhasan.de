@@ -1,9 +1,8 @@
 import type { Metadata } from 'next';
 import { Space_Grotesk, DM_Sans, JetBrains_Mono } from 'next/font/google';
 import './globals.css';
-import ThemeToggle from '@/components/ThemeToggle';
-import SiteNav from '@/components/SiteNav';
-import ShieldStrip from '@/components/ShieldStrip';
+import SiteHeader from '@/components/SiteHeader';
+import SiteFooter from '@/components/SiteFooter';
 
 // Real fonts — wired via next/font (self-hosted at build, no external requests).
 // Space Grotesk: display/headings. DM Sans: body. JetBrains Mono: code/mono.
@@ -108,53 +107,9 @@ export default function RootLayout({
         <a href="#main" className="skip-link">
           Zum Inhalt springen
         </a>
-        <header className="relative z-40 border-b border-[var(--border)] bg-[var(--header-bg)] backdrop-blur-sm">
-          <nav
-            aria-label="Hauptnavigation"
-            className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4 md:px-10"
-          >
-            <a
-              href="/"
-              className="nav-link text-lg font-semibold text-[var(--text-primary)] no-underline hover:text-[var(--accent-strong)]"
-            >
-              robiulhasan.de
-            </a>
-            <div className="flex items-center gap-5">
-              <SiteNav />
-              <ThemeToggle />
-            </div>
-          </nav>
-        </header>
+        <SiteHeader />
         <main id="main">{children}</main>
-        <footer className="border-t border-[var(--border)]">
-          <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-6 md:px-10">
-            <div className="flex flex-col gap-1">
-              <p className="text-sm text-[var(--text-tertiary)]">
-                © 2026 Robiul Hasan · München
-              </p>
-              <ShieldStrip />
-            </div>
-            <nav aria-label="Fußnavigation">
-              <ul className="flex list-none gap-4 p-0">
-                <li>
-                  <a href="/impressum/" className="nav-link text-sm text-[var(--text-tertiary)] no-underline hover:text-[var(--accent-strong)]">
-                    Impressum
-                  </a>
-                </li>
-                <li>
-                  <a href="/datenschutz/" className="nav-link text-sm text-[var(--text-tertiary)] no-underline hover:text-[var(--accent-strong)]">
-                    Datenschutz
-                  </a>
-                </li>
-                <li>
-                  <a href="/docs/adr/" className="nav-link text-sm text-[var(--text-tertiary)] no-underline hover:text-[var(--accent-strong)]">
-                    Architektur
-                  </a>
-                </li>
-              </ul>
-            </nav>
-          </div>
-        </footer>
+        <SiteFooter />
       </body>
     </html>
   );
