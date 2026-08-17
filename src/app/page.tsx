@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { getProjects, getPosts } from '@lib/content';
+import { getWording } from '@lib/facts';
 import Hero from '@/components/Hero';
 import Reveal from '@/components/Reveal';
 import CountUp from '@/components/CountUp';
@@ -9,41 +10,43 @@ import AIDemo from '@/components/AIDemo';
 export default function HomePage() {
   const projects = getProjects().slice(0, 3);
   const posts = getPosts().slice(0, 3);
+  // Availability wording comes from the truth registry (open-for-work,
+  // owner-confirmed) — never hardcoded (directive §1.2).
+  const availability = getWording('open-for-work');
 
   return (
     <div className="mx-auto max-w-6xl px-6 md:px-10">
       {/* Hero — the wow layer (Release 1/2) */}
       <Hero />
 
-      {/* Status strip — safe public trust signal (no internal metrics) */}
-      <Reveal>
-        <section
-          aria-label="Positionierung"
-          className="rounded-lg border border-[var(--border)] bg-[var(--bg-elevated)] p-4"
-        >
-          <p className="text-sm text-[var(--text-secondary)]">
-            <span className="titan-pulse-dot mr-2 inline-block align-middle" />
-            Offen für neue Projekte
-          </p>
-          <p className="mt-1 text-sm text-[var(--text-tertiary)]">
-            Software-Engineering · KI-Systeme · Sicherheit
-          </p>
-          <p className="text-sm text-[var(--text-tertiary)]">
-            Dokumentiert · Getestet · Datenschutz-konform
-          </p>
-        </section>
-      </Reveal>
+      {/* Positioning strip — availability only, rendered verbatim from the truth
+          registry. The former "Software-Engineering · KI-Systeme · Sicherheit"
+          self-tag and the absolute "Datenschutz-konform" compliance claim were
+          removed: neither is a verified/owner-confirmed fact (directive §1.2 /
+          §10; facts.yaml datenschutz-konform-badge is needs-verification). */}
+      {availability && (
+        <Reveal>
+          <section
+            aria-label="Positionierung"
+            className="rounded-lg border border-[var(--border)] bg-[var(--bg-elevated)] p-4"
+          >
+            <p className="text-sm text-[var(--text-secondary)]">
+              <span className="titan-pulse-dot mr-2 inline-block align-middle" />
+              {availability}
+            </p>
+          </section>
+        </Reveal>
+      )}
 
       {/* Proof cards — public evidence only (no internal operations data) */}
       <Reveal className="py-[var(--space-24)]">
         <div className="divider-gradient" aria-hidden="true" />
         <p className="section-eyebrow">01 — Nachweise</p>
         <h2 className="mb-6 text-2xl font-semibold">Nachweisbare Arbeit</h2>
-        <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-4">
+        <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3">
           <CountUp end={3} suffix="" label="Projekte dokumentiert" />
           <CountUp end={4} suffix="" label="Artikel veröffentlicht" />
           <CountUp end={5} suffix="" label="Wissens-Seiten" />
-          <CountUp end={100} suffix="%" label="Datenschutz-konform (DSGVO)" />
         </div>
       </Reveal>
 

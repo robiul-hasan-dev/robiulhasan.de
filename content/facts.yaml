@@ -33,21 +33,21 @@ facts:
   - id: projects-documented
     claim: Three projects are documented on the site.
     status: verified
-    evidence: content/projects/*.md — 3 files present
+    evidence: "content/projects/*.md — 3 files present"
     publicWording: 3 Projekte dokumentiert
     lastVerified: 2026-08-17
 
   - id: posts-published
     claim: Four articles are published.
     status: verified
-    evidence: content/posts/*.md — 4 files with published: true
+    evidence: "content/posts/*.md — 4 files with published: true"
     publicWording: 4 Artikel veröffentlicht
     lastVerified: 2026-08-17
 
   - id: knowledge-pages
     claim: Five knowledge pages exist.
     status: verified
-    evidence: content/knowledge/*.md — 5 files
+    evidence: "content/knowledge/*.md — 5 files"
     publicWording: 5 Wissens-Seiten
     lastVerified: 2026-08-17
 
@@ -70,7 +70,7 @@ facts:
       public surface. Do not restate as any "100%"/"fully compliant" wording.
 
   - id: datenschutz-konform-badge
-    claim: "Dokumentiert · Getestet · Datenschutz-konform" trust strip.
+    claim: '"Dokumentiert · Getestet · Datenschutz-konform" trust strip'
     status: needs-verification
     evidence: "Documented/tested partially true; compliance unverified."
     publicWording: null
