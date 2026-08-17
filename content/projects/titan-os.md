@@ -1,67 +1,41 @@
 ---
-title: "Titan/OS — A Self-Hosted AI Operating System"
+title: "Titan/OS — selbst gehostetes Multi-Agent-Automationssystem"
 slug: "titan-os"
-status: "live"
-stack: ["PostgreSQL", "pgvector", "Docker", "Python"]
+factId: "project-titan-os"
+status: "in-progress"
 published: true
+featured: true
 date: 2026-08-02
-summary: "A multi-agent AI operating system — intelligence, knowledge validation, quality gates, legal compliance, finance — all self-hosted on a single VPS."
-tier: "A"
+dateRange: "2026 – laufend"
+role: "Alleiniger Entwurf, Aufbau und Betrieb (persönliches System)."
+summary: "Ein selbst gehostetes Multi-Agent-System, das wiederkehrende Betriebsabläufe bündelt — als persönliches Arbeitssystem, nicht als kommerzielles Produkt."
+problem: "Eine Einzelperson braucht organisatorische Struktur für wiederkehrende Recherche-, Wissens- und Prüfaufgaben — ohne ein Team dafür zu haben."
+constraints:
+  - "Nur selbst gehostet auf einem einzelnen VPS."
+  - "Ausschließlich quelloffene Komponenten (MIT/Apache/AGPL)."
+  - "Keine externen SaaS-Abhängigkeiten für Kernabläufe."
+methods:
+  - "Spezialisierte Agenten für abgegrenzte Aufgaben statt eines Monolithen."
+  - "Gemeinsame PostgreSQL-Datenbasis mit pgvector für semantische Verknüpfung."
+  - "Zeitgesteuerte Abläufe mit einem zusammengeführten Digest."
+technologies: ["PostgreSQL", "pgvector", "Docker", "Python"]
+outcomes:
+  - claim: "Mehrere wiederkehrende Abläufe laufen zeitgesteuert und selbst gehostet."
 tags: ["ai-agents", "architecture", "self-hosted", "automation"]
 ---
 
-## Problem
+## Ansatz
 
-A solo entrepreneur needs the organizational intelligence of a large company — without the headcount. The question: can AI agents replace departments?
+Spezialisierte Agenten übernehmen jeweils eine abgegrenzte Aufgabe — Recherche,
+Wissensablage, Prüf-Gates — statt eines einzelnen Monolithen. Eine gemeinsame
+PostgreSQL-Datenbasis (mit pgvector) dient als einzige Quelle der Wahrheit und
+verknüpft Einträge semantisch.
 
-## Solution
+## Aktueller Stand
 
-Titan/OS: a multi-agent operating system where specialized agents mirror company departments:
-
-- **Intelligence agent** — external monitoring, weekly briefings
-- **Knowledge agent** — validation gates with evidence tiers
-- **Quality agent** — multi-dimension checks and a debt register
-- **Legal & Compliance** — obligations, deadlines, document generation
-- **Finance, Tax, Insurance, HR, R&D, Education, Advisory** — specialized workflows with structured data and schedules
-
-## Architecture
-
-```
-PostgreSQL 16 + pgvector (single source of truth)
-    │
-    ├── Intelligence agent (external sources → findings)
-    ├── Knowledge agent (capture → validate → knowledge graph)
-    ├── Quality agent (quality gate → debt register)
-    ├── Memory (knowledge graph, semantic auto-linking)
-    └── Specialized workflow agents (scripts + schedules + tables)
-```
-
-**Key decisions:**
-- Everything self-hosted on own infrastructure
-- No VC-funded tools — only MIT/Apache/AGPL
-- Automated recurring workflows with a unified digest
-- Knowledge graph with semantic auto-linking (pgvector)
-
-## Live Evidence
-
-| Metric | Result |
-|--------|--------|
-| Departments live | Yes — multi-agent (self-hosted) |
-| Database tables | Managed via PostgreSQL |
-
-## Learnings
-
-1. **Scripts ≠ departments.** The org audit (61/100) showed several agents were too narrow — Education was a "German learning agent" instead of corporate L&D. The fix was charters, not code.
-2. **Honeypots work.** The anti-poisoning system caught a real breach on day one.
-3. **Governance triad matters:** one gate for knowledge (what enters), one for quality (what leaves), one for intelligence (what's outside).
-
-## Self-Critique
-
-- Some departments remain single-purpose scripts — the gap between "script" and "department" is real
-- LLM synthesis for intelligence workflows not yet built (keyword matching only)
-- Cross-department orchestration (unified digest) is new — needs months of real use
-
-## Evidence References
-
-- Architecture: design docs in the private second-brain repository
-- Org audit: 61/100 → improving (private review process)
+Das System ist ein persönliches Arbeitssystem in laufender Entwicklung, kein
+kommerzielles Produkt. Mehrere Agenten sind noch eng umrissene Skripte; die
+Abgrenzung zwischen „Skript" und „Abteilung" ist noch nicht überall erreicht.
+Übergreifende Orchestrierung ist neu und braucht längeren Realbetrieb, bevor
+belastbare Aussagen möglich sind. Konkrete Kennzahlen werden erst ausgewiesen,
+wenn sie extern überprüfbar sind.

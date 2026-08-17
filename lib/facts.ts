@@ -14,6 +14,7 @@ import matter from 'gray-matter';
 import {
   parseTruthRegistry,
   publishableWording,
+  type Fact,
   type TruthRegistry,
 } from './schema';
 
@@ -62,4 +63,14 @@ export function getPublishableWording(): Record<string, string> {
  */
 export function getWording(id: string): string | null {
   return getPublishableWording()[id] ?? null;
+}
+
+/**
+ * The full registry entry for a fact id, or null when unknown. Unlike getWording,
+ * this exposes non-publishable metadata (e.g. the honest `lifecycle` label of a
+ * needs-verification project) so a surface can show the lifecycle status WITHOUT
+ * ever rendering a withheld claim — publicWording stays null by schema rule.
+ */
+export function getFact(id: string): Fact | null {
+  return getTruthRegistry().facts.find((fact) => fact.id === id) ?? null;
 }

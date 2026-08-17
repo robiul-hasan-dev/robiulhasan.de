@@ -137,34 +137,48 @@ export const imageAssetSchema = z.object({
 });
 export type ImageAsset = z.infer<typeof imageAssetSchema>;
 
-/** Project statuses reuse the lifecycle vocabulary (directive §7.2). */
+/**
+ * A single project outcome. `evidenceId` links the claim back to a truth-registry
+ * fact; only an outcome whose evidenceId resolves to a PUBLISHABLE fact may be
+ * shown as a verified (quantitative) result. An unlinked outcome is a qualitative
+ * description of the approach — never presented as a measured metric (§1.2).
+ */
+export const projectOutcomeSchema = z.object({
+  claim: z.string().min(1),
+  evidenceId: kebabId.optional(),
+});
+export type ProjectOutcome = z.infer<typeof projectOutcomeSchema>;
+
+/**
+ * Published project contract (directive §7.2). lib/content parses every
+ * PUBLISHED project's front matter through this schema, so the BUILD FAILS when a
+ * published project is missing its status (lifecycle), role, problem, or any
+ * other required field — dishonest-by-omission content cannot ship.
+ *
+ * `status` carries the visible lifecycle label; `factId` links the project to
+ * its truth-registry entry so the public description and any measurable results
+ * render THROUGH the registry rather than from the raw markdown.
+ */
 export const projectSchema = z.object({
   slug: kebabId,
-  locale: z.enum(LOCALES),
   title: z.string().min(1),
   summary: z.string().min(1),
   status: z.enum(LIFECYCLES),
   role: z.string().min(1),
+  date: isoDate,
   dateRange: z.string().min(1),
   problem: z.string().min(1),
   constraints: z.array(z.string().min(1)).default([]),
   methods: z.array(z.string().min(1)).default([]),
-  outcomes: z
-    .array(
-      z.object({
-        claim: z.string().min(1),
-        // Links an outcome back to a truth-registry fact id when it makes a
-        // measurable claim — enforced against the registry in a later slice.
-        evidenceId: kebabId.optional(),
-      }),
-    )
-    .default([]),
+  outcomes: z.array(projectOutcomeSchema).default([]),
   technologies: z.array(z.string().min(1)).default([]),
-  cover: imageAssetSchema,
-  gallery: z.array(imageAssetSchema).default([]),
-  repositoryUrl: z.string().url().optional(),
+  tags: z.array(z.string().min(1)).default([]),
+  cover: imageAssetSchema.optional(),
   demoUrl: z.string().url().optional(),
+  repositoryUrl: z.string().url().optional(),
+  factId: kebabId.optional(),
   featured: z.boolean().default(false),
+  published: z.boolean().default(false),
 });
 export type Project = z.infer<typeof projectSchema>;
 

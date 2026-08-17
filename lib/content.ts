@@ -3,18 +3,12 @@
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
+import { parseProject, type Project as ProjectFrontmatter } from './schema';
 
-export interface Project {
-  title: string;
-  slug: string;
-  status: string;
-  stack: string[];
-  tier: string;
-  tags: string[];
-  summary: string;
-  body: string;
-  date: string;
-}
+/** A published project: validated front matter (lib/schema) + rendered body.
+ *  Loading goes THROUGH parseProject, so the build fails on a published project
+ *  that is missing a required field (directive §7.2). */
+export type Project = ProjectFrontmatter & { body: string };
 
 export interface Post {
   title: string;
@@ -59,9 +53,37 @@ function normalizeDate(d: unknown): string {
   return String(d ?? '');
 }
 
+/** Load, validate, and return every PUBLISHED project (drafts are skipped and
+ *  not strictly validated). Front matter that fails the schema throws here,
+ *  failing the build with the offending file named (directive §7.2). */
 export function getProjects(): Project[] {
-  return loadCollection<Project>('projects')
-    .map((p) => ({ ...p, date: normalizeDate(p.date) }))
+  const dir = path.join(CONTENT_DIR, 'projects');
+  if (!fs.existsSync(dir)) return [];
+  return fs
+    .readdirSync(dir)
+    .filter((f) => f.endsWith('.md'))
+    .map((f) => {
+      const raw = fs.readFileSync(path.join(dir, f), 'utf8');
+      const { data, content } = matter(raw);
+      return { file: f, data: data as Record<string, unknown>, body: content };
+    })
+    .filter(({ data }) => data.published === true)
+    .map(({ file, data, body }) => {
+      try {
+        // gray-matter parses ISO dates into Date objects; the schema wants a
+        // plain ISO string, so normalize before validating.
+        const frontmatter = parseProject({
+          ...data,
+          date: normalizeDate(data.date).slice(0, 10),
+        });
+        return { ...frontmatter, body };
+      } catch (err) {
+        const message = err instanceof Error ? err.message : String(err);
+        throw new Error(
+          `Invalid project front matter in content/projects/${file}: ${message}`,
+        );
+      }
+    })
     .sort((a, b) => b.date.localeCompare(a.date));
 }
 

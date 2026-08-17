@@ -125,6 +125,44 @@ facts:
     publicWording: null
     lastVerified: null
 
+  # ---- Documented projects on the site (content/projects/*.md) -------------
+  # These three case studies previously shipped with status: "live" and
+  # unverifiable metrics (e.g. "42 results/query", "hundreds of IPs banned",
+  # an org-audit "61/100"). Reclassified honestly per directive §1.2: the
+  # lifecycle label is publishable (it is an honest classification, not a
+  # marketing claim), but publicWording stays null until a description is
+  # cleared — so the work index shows an honest placeholder, not the old copy.
+  - id: project-titan-os
+    claim: Titan/OS — self-hosted multi-agent automation system (personal).
+    status: needs-verification
+    lifecycle: in-progress
+    evidence: >-
+      OWNER INPUT REQUIRED — publish-safe description + which workflows actually
+      run. Prior metrics (org-audit score, honeypot "breach") not reproducible.
+    publicWording: null
+    lastVerified: null
+    note: Personal work system, not a commercial product. No "production"/"live" wording.
+
+  - id: project-titan-search
+    claim: Titan Search — self-hosted private metasearch (personal).
+    status: needs-verification
+    lifecycle: prototype
+    evidence: >-
+      OWNER INPUT REQUIRED — publish-safe description. Prior counts
+      ("42 results/query", "0 CAPTCHAs", "24/7") are not externally evidenced.
+    publicWording: null
+    lastVerified: null
+
+  - id: project-titan-shield
+    claim: Titan Shield — automated security monitoring (personal).
+    status: needs-verification
+    lifecycle: prototype
+    evidence: >-
+      OWNER INPUT REQUIRED — publish-safe description. Prior claims
+      ("hundreds of IPs banned", a specific port find) are not verifiable.
+    publicWording: null
+    lastVerified: null
+
   # ---- Identity / background (verify against CV before publishing) ---------
   - id: humanitarian-background
     claim: Humanitarian field experience (e.g. IOM / DRC / MSF).
