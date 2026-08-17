@@ -1,8 +1,32 @@
 import type { Metadata } from 'next';
+import { Space_Grotesk, DM_Sans, JetBrains_Mono } from 'next/font/google';
 import './globals.css';
 import ThemeToggle from '@/components/ThemeToggle';
 import SiteNav from '@/components/SiteNav';
 import ShieldStrip from '@/components/ShieldStrip';
+
+// Real fonts — wired via next/font (self-hosted at build, no external requests).
+// Space Grotesk: display/headings. DM Sans: body. JetBrains Mono: code/mono.
+const spaceGrotesk = Space_Grotesk({
+  subsets: ['latin'],
+  variable: '--font-space',
+  display: 'swap',
+  weight: ['500', '600', '700'],
+});
+
+const dmSans = DM_Sans({
+  subsets: ['latin'],
+  variable: '--font-sans',
+  display: 'swap',
+  weight: ['400', '500', '700'],
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ['latin'],
+  variable: '--font-jb-mono',
+  display: 'swap',
+  weight: ['400', '500'],
+});
 
 export const metadata: Metadata = {
   title: {
@@ -77,7 +101,9 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="bg-[var(--bg)] text-[var(--text-primary)] antialiased">
+      <body
+        className={`${spaceGrotesk.variable} ${dmSans.variable} ${jetbrainsMono.variable} bg-[var(--bg)] text-[var(--text-primary)] antialiased`}
+      >
         <div className="grain-overlay" aria-hidden="true" />
         <a href="#main" className="skip-link">
           Zum Inhalt springen
